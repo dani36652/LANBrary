@@ -1,0 +1,138 @@
+unit PasswordHashing;
+
+interface
+
+uses
+  System.SysUtils,
+  System.NetEncoding,
+  System.Classes,
+  System.Types,
+  System.StrUtils,
+  HlpConverters,
+  HlpIHashInfo,
+  HlpPBKDF_Argon2NotBuildInAdapter,
+  HlpHashLibTypes;
+
+type
+  TPasswordHasher = class
+  private
+    const
+      DEFAULT_MEMORY_KB   = 65536; // 64 MB
+      DEFAULT_ITERATIONS  = 3;
+      DEFAULT_PARALLELISM = 1;
+      DEFAULT_HASH_LEN    = 32;    // 256 bits
+  private
+    class function BytesEqualConstTime(const A, B: THashLibByteArray): Boolean; static;
+  public
+    /// Genera un salt (Base64) a partir de un GUID (128 bits)
+    class function GenerateSaltFromGUID: string; static;
+
+    /// Genera un hash Argon2id para la contraseña especificada.
+    /// El formato devuelto es "saltBase64$hashBase64"
+    class function HashPassword(const PlainPassword: string): string; static;
+
+    /// Verifica si una contraseña coincide con el hash almacenado
+    /// (en formato "saltBase64$hashBase64")
+    class function VerifyPassword(const PlainPassword, StoredHash: string): Boolean; static;
+  end;
+
+implementation
+
+{ TPasswordHasher }
+
+class function TPasswordHasher.GenerateSaltFromGUID: string;
+var
+  G: TGUID;
+  Bytes: THashLibByteArray;
+begin
+  if CreateGUID(G) <> S_OK then
+    raise Exception.Create('No se pudo generar el GUID para el salt.');
+
+  SetLength(Bytes, SizeOf(TGUID));
+  Move(G, Bytes[0], SizeOf(TGUID));
+  Result := TNetEncoding.Base64.EncodeBytesToString(Bytes);
+end;
+
+class function TPasswordHasher.BytesEqualConstTime(const A, B: THashLibByteArray): Boolean;
+var
+  i: Integer;
+  Diff: Byte;
+begin
+  if Length(A) <> Length(B) then
+    Exit(False);
+
+  Diff := 0;
+  for i := 0 to High(A) do
+    Diff := Diff or (A[i] xor B[i]);
+
+  Result := Diff = 0;
+end;
+
+class function TPasswordHasher.HashPassword(const PlainPassword: string): string;
+var
+  SaltBytes, PasswordBytes, HashBytes: THashLibByteArray;
+  SaltB64, HashB64: string;
+  ParamsBuilder: IArgon2ParametersBuilder;
+  Params: IArgon2Parameters;
+  Argon2: IPBKDF_Argon2;
+begin
+  // Generar salt aleatorio
+  SaltB64 := GenerateSaltFromGUID;
+  SaltBytes := TNetEncoding.Base64.DecodeStringToBytes(SaltB64);
+  PasswordBytes := TConverters.ConvertStringToBytes(PlainPassword, TEncoding.UTF8);
+
+  // Configurar parámetros Argon2id
+  ParamsBuilder := TArgon2idParametersBuilder.Builder();
+  Params := ParamsBuilder
+              .WithSalt(SaltBytes)
+              .WithIterations(DEFAULT_ITERATIONS)
+              .WithParallelism(DEFAULT_PARALLELISM)
+              .WithMemoryAsKB(DEFAULT_MEMORY_KB)
+              .Build();
+
+  // Crear el derivador y obtener bytes
+  Argon2 := TPBKDF_Argon2NotBuildInAdapter.Create(PasswordBytes, Params);
+  HashBytes := Argon2.GetBytes(DEFAULT_HASH_LEN);
+
+  // Codificar resultado
+  HashB64 := TNetEncoding.Base64.EncodeBytesToString(HashBytes);
+  Result := Format('%s$%s', [SaltB64, HashB64]);
+end;
+
+class function TPasswordHasher.VerifyPassword(const PlainPassword, StoredHash: string): Boolean;
+var
+  Parts: TArray<string>;
+  SaltB64, HashB64: string;
+  SaltBytes, PasswordBytes, StoredHashBytes, ComputedHash: THashLibByteArray;
+  ParamsBuilder: IArgon2ParametersBuilder;
+  Params: IArgon2Parameters;
+  Argon2: IPBKDF_Argon2;
+begin
+  Result := False;
+  Parts := StoredHash.Split(['$']);
+  if Length(Parts) <> 2 then
+    raise Exception.Create('Formato de hash almacenado inválido.');
+
+  SaltB64 := Parts[0];
+  HashB64 := Parts[1];
+
+  SaltBytes := TNetEncoding.Base64.DecodeStringToBytes(SaltB64);
+  StoredHashBytes := TNetEncoding.Base64.DecodeStringToBytes(HashB64);
+  PasswordBytes := TConverters.ConvertStringToBytes(PlainPassword, TEncoding.UTF8);
+
+  // Reconstruir parámetros con los mismos valores predeterminados
+  ParamsBuilder := TArgon2idParametersBuilder.Builder();
+  Params := ParamsBuilder
+              .WithSalt(SaltBytes)
+              .WithIterations(DEFAULT_ITERATIONS)
+              .WithParallelism(DEFAULT_PARALLELISM)
+              .WithMemoryAsKB(DEFAULT_MEMORY_KB)
+              .Build();
+
+  Argon2 := TPBKDF_Argon2NotBuildInAdapter.Create(PasswordBytes, Params);
+  ComputedHash := Argon2.GetBytes(DEFAULT_HASH_LEN);
+
+  Result := BytesEqualConstTime(ComputedHash, StoredHashBytes);
+end;
+
+end.

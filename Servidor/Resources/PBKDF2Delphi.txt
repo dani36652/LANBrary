@@ -1,0 +1,132 @@
+unit PasswordHashing;
+
+interface
+
+uses
+  System.SysUtils,
+  System.NetEncoding,
+  System.Classes,
+  System.StrUtils,
+  HlpHashFactory,
+  HlpIHash,
+  HlpIHashInfo,
+  HlpIHashResult,
+  HlpConverters,
+  HlpArrayUtils,
+  HlpHashLibTypes;
+
+type
+  /// Helper simple para PBKDF2-HMAC (SHA-512 por defecto)
+  TPasswordHasherPBKDF2 = class
+  private
+    const
+      DEFAULT_ITERATIONS = 310000; // recomendado OWASP 2025 (ajusta según tu entorno)
+      DEFAULT_HASHLEN    = 64;     // 64 bytes = 512 bits (SHA-512)
+  private
+    class function BytesEqualConstTime(const A, B: THashLibByteArray): Boolean; static;
+  public
+    /// Genera salt (Base64) a partir de un GUID (128 bits)
+    class function GenerateSaltFromGUID: string; static;
+
+    /// Hashea la contraseña con PBKDF2-HMAC-SHA512. Devuelve: saltBase64$hashBase64
+    class function HashPassword(const PlainPassword: string): string; static;
+
+    /// Verifica la contraseña usando el string guardado (saltBase64$hashBase64)
+    class function VerifyPassword(const PlainPassword, Stored: string): Boolean; static;
+  end;
+
+implementation
+
+{ TPasswordHasherPBKDF2 }
+
+class function TPasswordHasherPBKDF2.GenerateSaltFromGUID: string;
+var
+  G: TGUID;
+  B: THashLibByteArray;
+begin
+  if CreateGUID(G) <> S_OK then
+    raise Exception.Create('No se pudo generar GUID para salt.');
+
+  SetLength(B, SizeOf(TGUID));
+  Move(G, B[0], SizeOf(TGUID));
+  Result := TNetEncoding.Base64.EncodeBytesToString(B);
+end;
+
+class function TPasswordHasherPBKDF2.BytesEqualConstTime(const A, B: THashLibByteArray): Boolean;
+var
+  i: Integer;
+  x: Cardinal;
+begin
+  if Length(A) <> Length(B) then
+    Exit(False);
+
+  x := 0;
+  for i := 0 to High(A) do
+    x := x or (Cardinal(A[i]) xor Cardinal(B[i]));
+
+  Result := x = 0;
+end;
+
+class function TPasswordHasherPBKDF2.HashPassword(const PlainPassword: string): string;
+var
+  SaltB64: string;
+  SaltBytes, PwdBytes, DerivedKey: THashLibByteArray;
+  PBKDF2Inst: IPBKDF2_HMAC;
+  EncHash: string;
+begin
+  // Generar salt
+  SaltB64 := GenerateSaltFromGUID;
+  SaltBytes := TNetEncoding.Base64.DecodeStringToBytes(SaltB64);
+
+  // Convertir password a THashLibByteArray (UTF-8)
+  PwdBytes := TConverters.ConvertStringToBytes(PlainPassword, TEncoding.UTF8);
+
+  // Crear instancia PBKDF2-HMAC con SHA-512 (tal como en tus tests se usa CreatePBKDF2_HMAC)
+  // Firma: CreatePBKDF2_HMAC(HashInstance, PasswordBytes, SaltBytes, Iterations)
+  PBKDF2Inst := TKDF.TPBKDF2_HMAC.CreatePBKDF2_HMAC(
+                  THashFactory.TCrypto.CreateSHA2_512(),
+                  PwdBytes,
+                  SaltBytes,
+                  DEFAULT_ITERATIONS);
+
+  // Obtener derived key
+  DerivedKey := PBKDF2Inst.GetBytes(DEFAULT_HASHLEN);
+
+  EncHash := TNetEncoding.Base64.EncodeBytesToString(DerivedKey);
+
+  // Formato almacenado: salt$hash
+  Result := Format('%s$%s', [SaltB64, EncHash]);
+end;
+
+class function TPasswordHasherPBKDF2.VerifyPassword(const PlainPassword, Stored: string): Boolean;
+var
+  Parts: TArray<string>;
+  SaltB64, HashB64: string;
+  SaltBytes, PwdBytes, StoredKey, ComputedKey: THashLibByteArray;
+  PBKDF2Inst: IPBKDF2_HMAC;
+begin
+  Parts := Stored.Split(['$']);
+  if Length(Parts) <> 2 then
+    raise Exception.Create('Formato inválido: se esperaba "saltBase64$hashBase64".');
+
+  SaltB64 := Parts[0];
+  HashB64 := Parts[1];
+
+  SaltBytes := TNetEncoding.Base64.DecodeStringToBytes(SaltB64);
+  StoredKey := TNetEncoding.Base64.DecodeStringToBytes(HashB64);
+
+  PwdBytes := TConverters.ConvertStringToBytes(PlainPassword, TEncoding.UTF8);
+
+  // Reconstruir PBKDF2 con los mismos parámetros
+  PBKDF2Inst := TKDF.TPBKDF2_HMAC.CreatePBKDF2_HMAC(
+                  THashFactory.TCrypto.CreateSHA2_512(),
+                  PwdBytes,
+                  SaltBytes,
+                  DEFAULT_ITERATIONS);
+
+  ComputedKey := PBKDF2Inst.GetBytes(DEFAULT_HASHLEN);
+
+  Result := BytesEqualConstTime(ComputedKey, StoredKey);
+end;
+
+end.

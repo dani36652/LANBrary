@@ -1,0 +1,17 @@
+1. DLLs necesarias para Indy (HTTPS con TIdHTTPWebBrokerBridge)
+🔹 Opción recomendada (segura y actualizada)
+
+Descárgalas desde el proyecto oficial de Indy en GitHub:
+
+🔗 Repositorio oficial de binarios OpenSSL para Indy
+👉 https://indy.fulgan.com/SSL/
+
+2. Ejecutable para generar certificados: openssl.exe
+🔹 Opción 1: Instalar OpenSSL completo (recomendado)
+
+Descárgalo desde un mantenedor confiable:
+
+🔗 https://slproweb.com/products/Win32OpenSSL.html
+
+
+3. XAMPP: https://www.apachefriends.org/es/index.html

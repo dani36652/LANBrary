@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E6690268-97F6-41DE-82E1-394E5B9CD356}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Servidor\Admin_LANBrary.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Cliente\LANBrary.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Servidor\lib\libPDFMiniaturas\miniaturaPDF.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Admin_LANBrary">
+        <MSBuild Projects="Servidor\Admin_LANBrary.dproj"/>
+    </Target>
+    <Target Name="Admin_LANBrary:Clean">
+        <MSBuild Projects="Servidor\Admin_LANBrary.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Admin_LANBrary:Make">
+        <MSBuild Projects="Servidor\Admin_LANBrary.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="LANBrary">
+        <MSBuild Projects="Cliente\LANBrary.dproj"/>
+    </Target>
+    <Target Name="LANBrary:Clean">
+        <MSBuild Projects="Cliente\LANBrary.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LANBrary:Make">
+        <MSBuild Projects="Cliente\LANBrary.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="miniaturaPDF">
+        <MSBuild Projects="Servidor\lib\libPDFMiniaturas\miniaturaPDF.dproj"/>
+    </Target>
+    <Target Name="miniaturaPDF:Clean">
+        <MSBuild Projects="Servidor\lib\libPDFMiniaturas\miniaturaPDF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="miniaturaPDF:Make">
+        <MSBuild Projects="Servidor\lib\libPDFMiniaturas\miniaturaPDF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Admin_LANBrary;LANBrary;miniaturaPDF"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Admin_LANBrary:Clean;LANBrary:Clean;miniaturaPDF:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Admin_LANBrary:Make;LANBrary:Make;miniaturaPDF:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

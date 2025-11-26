@@ -1,0 +1,23 @@
+﻿[StyleBook1]
+Coordinates=934,498,70,33
+Visible=True
+
+[]
+Coordinates=10,10,148,1311
+Visible=True
+LayerNames=
+ExplicitSubNodes=AutoCapture;CanFocus;CanParentFocus;Canvas.Blending;ClipChildren;ClipParent;ComponentIndex;Controls.Capacity;Controls.Count;Cursor;DesignInfo;DisableDisappear;DisableFocusEffect;Enabled;EnableDragHighlight;Height;Hint;HitTest;Index;Locked;Margins.Bottom;Margins.Left;Margins.Right;Margins.Top;Opacity;Owner.ComponentIndex;Owner.DesignInfo;Owner.Name;Owner.Tag;Padding.Bottom;Padding.Left;Padding.Right;Padding.Top;Parent.ComponentIndex;Parent.DesignInfo;Parent.Index;Parent.Name;Parent.Stored;Parent.StyleName;Parent.Tag;Parent.TagFloat;Parent.TagString;ParentShowHint;Position.StoreAsInt;Position.X;Position.Y;Pressed;RotationAngle;RotationCenter.StoreAsInt;RotationCenter.X;RotationCenter.Y;Scale.StoreAsInt;Scale.X;Scale.Y;ShowHint;Size.Height;Size.PlatformDefault;Size.Width;Stored;StyleName;TabOrder;TabStop;Tag;TagFloat;TagString;TouchTargetExpansion.Bottom;TouchTargetExpansion.Left;TouchTargetExpansion.Right;TouchTargetExpansion.Top;Visible;Width
+
+[imgDefaultPortadaLibro]
+Coordinates=611,10,131,51
+Visible=True
+
+[Popup]
+Coordinates=10,498,46,33
+Visible=True
+
+[Module Settings]
+ModelLayerNames=
+ActiveLayerNames=
+EditingLayerName=
+

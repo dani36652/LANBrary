@@ -66,18 +66,18 @@
     <Transaction>2025/02/12 16:29:12.000.320,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
     <Transaction>2025/02/12 16:30:11.000.294,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.pas=</Transaction>
     <Transaction>2025/02/12 16:48:05.000.555,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
-    <Transaction>2025/02/12 16:48:26.000.316,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UStoredProcedures.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
     <Transaction>2025/02/12 16:48:26.000.316,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UStoredProcedures.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.dfm</Transaction>
+    <Transaction>2025/02/12 16:48:26.000.316,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UStoredProcedures.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
     <Transaction>2025/02/12 16:48:46.000.183,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UStoredProcedures.pas</Transaction>
     <Transaction>2025/02/12 16:48:46.000.183,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UStoredProcedures.dfm</Transaction>
     <Transaction>2025/02/12 16:50:11.000.853,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.pas</Transaction>
     <Transaction>2025/02/12 16:50:11.000.853,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UStoredProcedures.dfm</Transaction>
     <Transaction>2025/02/12 17:29:35.000.447,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.pas=</Transaction>
     <Transaction>2025/02/13 10:34:21.000.681,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
-    <Transaction>2025/02/13 10:34:45.000.536,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.dfm</Transaction>
     <Transaction>2025/02/13 10:34:45.000.536,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.pas</Transaction>
-    <Transaction>2025/02/13 10:34:52.000.492,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.pas</Transaction>
+    <Transaction>2025/02/13 10:34:45.000.536,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.dfm</Transaction>
     <Transaction>2025/02/13 10:34:52.000.492,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.dfm=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.dfm</Transaction>
+    <Transaction>2025/02/13 10:34:52.000.492,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\UScripts.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\CapaDeDatos\UScripts.pas</Transaction>
     <Transaction>2025/03/05 11:35:32.000.696,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\Tipos\uCategoria.pas=</Transaction>
     <Transaction>2025/03/05 11:35:32.000.709,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\Tipos\uLibro.pas=</Transaction>
     <Transaction>2025/03/05 11:35:32.000.711,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\Tipos\uUsuario.pas=</Transaction>
@@ -96,11 +96,14 @@
     <Transaction>2025/10/15 12:17:51.000.374,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas</Transaction>
     <Transaction>2025/10/15 12:20:04.000.111,C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unit1.pas=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\UAcciones_Configuraciones.pas</Transaction>
     <Transaction>2025/11/13 17:44:04.000.268,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Servidor\Unidades\PasswordHashing.pas</Transaction>
+    <Transaction>2025/11/26 17:38:52.668,=C:\Users\drodriguez\Desktop\Ta\LANBrary\README.md</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile Android64="" Android=""/>
 	</ActiveMobileDevice>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\LANBrary"/>
+    <File Path="..\README.md"/>
     <File Path="Resources"/>
     <File Path="Resources\categorias.txt"/>
     <File Path="Unidades"/>

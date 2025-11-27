@@ -1,24 +1,6 @@
 (*
   Autor: Daniel Rodriguez Hernandez
   Fecha: 26/11/2025
-  --
-  Delphi fue mi primer lenguaje de programación cuando tenía 17 años.
-  Desde ese primer “Hola Mundo” en Borland Delphi 7, mis noches ya nunca fueron
-  iguales — ahí comenzó esta hermosa aventura sin fin, una que siempre me
-  sorprende con algo nuevo cada vez.
-
-  Más adelante descubrí que Delphi también podía usarse para crear aplicaciones
-  móviles y, honestamente, mi corazón explotó de emoción y de amor más que con
-  cualquier mujer que me hubiera hecho sentir algo así jaja :P.
-
-  Quiero cerrar esta nota agradeciendo a Delphi y a toda la comunidad de
-  desarrolladores por estar siempre ahí cuando he tenido dudas, por hacer del
-  desarrollo de software mi refugio en los momentos difíciles, y porque Delphi
-  —junto con el esfuerzo de estudiarlo— literalmente ha puesto comida en la mesa.
-
-  Un enorme agradecimiento a Embarcadero Tech por mantener vivo un lenguaje
-  tan increíble y tan a la vanguardia. Espero que este y otros ejemplos que he
-  compartido (y que seguiré compartiendo) les sean de ayuda a todos.
 *)
 unit UMain;
 

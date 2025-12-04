@@ -2,16 +2,16 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2025/11/26 15:14:22.000.496,=C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/11/26 15:14:36.000.885,C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\LANBrary.dproj=C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2025/11/26 15:14:48.000.712,C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\LANBrary.dproj=C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\LANBrary.dproj</Transaction>
-    <Transaction>2025/11/26 15:15:00.000.504,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Entidades\EPagina.pas</Transaction>
+    <Transaction>2025/11/26 15:14:36.000.885,C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\LANBrary.dproj</Transaction>
+    <Transaction>2025/11/26 15:14:48.000.712,C:\Users\drodriguez\Documents\Embarcadero\Studio\Projects\LANBrary.dproj=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\LANBrary.dproj</Transaction>
     <Transaction>2025/11/26 15:15:00.000.550,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Entidades\EUsuario.pas</Transaction>
     <Transaction>2025/11/26 15:15:00.000.472,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Entidades\ELibro.pas</Transaction>
     <Transaction>2025/11/26 15:15:00.000.410,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Entidades\ECategoria.pas</Transaction>
+    <Transaction>2025/11/26 15:15:00.000.504,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Entidades\EPagina.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.943,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\ULibros.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.740,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\UAcciones_Login.pas</Transaction>
-    <Transaction>2025/11/26 15:15:08.000.850,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\UAcciones_Registro.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.803,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\UAcciones_Principal.pas</Transaction>
+    <Transaction>2025/11/26 15:15:08.000.850,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\UAcciones_Registro.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.303,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Estilos.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.600,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\Generales.pas</Transaction>
     <Transaction>2025/11/26 15:15:08.000.662,=C:\Users\drodriguez\Desktop\Ta\LANBrary\Cliente\Unidades\UAcciones_Descargas.pas</Transaction>

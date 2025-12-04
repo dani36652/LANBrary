@@ -42,9 +42,14 @@ implementation
 constructor TREST.Create(AOwner: TComponent);
 begin
   inherited;
-  SetLength(Headers, 2);
-  Headers[1].Name:= 'ngrok-skip-browser-warning';
-  Headers[1].Value:= 'remove';
+  SetLength(Headers, 1);//2);
+  (*
+    SI SE USA NGROK PARA CONECTAR CON EL SERVIDOR,
+    DEBERAN QUITARSE LOS COMENTARIOS Y ENVIAR EN CADA PETICIÓN
+    ESE ENCABEZADO CON INDICE 1.
+  *)
+  //Headers[1].Name:= 'ngrok-skip-browser-warning';
+  //Headers[1].Value:= 'remove';
 
   Client := TNetHTTPClient.Create(self);
   Client.OnRequestError := NetHTTPClientRequestError;

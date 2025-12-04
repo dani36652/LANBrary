@@ -126,6 +126,7 @@ var
   i: Integer;
   Thread: TThread;
   Def: IFDStanConnectionDef;
+  VendorHome: string;
 begin
   PDF_FileName:= string.Empty;
   LAST_LIBRO_SELECTED:= -1;
@@ -139,9 +140,27 @@ begin
     ES MEJOR CREAR EL DRIVERLINK EN EL EVENTO ONCREATE DEL FORM
     PARA EVITAR PROBLEMAS EN MÓDULOS ESPECÍFICOS DEL PROGRAMA.
   *)
+  VendorHome:= ExtractFileDir(ParamStr(0));
+  if not TDirectory.Exists(VendorHome + PathDelim + 'lib') then
+    TDirectory.CreateDirectory(VendorHome + PathDelim + 'lib');
+
+  if not TFile.Exists(VendorHome + PathDelim + 'lib' +
+  PathDelim + 'libmysql.dll') then
+  begin
+    TDialogService.MessageDialog(
+    'No fue posible conectarse a la base de datos, falta el módulo ' +
+    '"libmysql.dll"',
+    TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], TMsgDlgBtn.mbOK, 0,
+    procedure (const AModalResut: TModalResult)
+    begin
+      Application.Terminate;
+    end);
+  end;
+
   frmMain.DriverLink:= TFDPhysMySQLDriverLink.Create(TForm(Sender));
   frmMain.DriverLink.DriverID:= 'MySQL';
-  frmMain.DriverLink.VendorLib:= ExtractFileDir(ParamStr(0)) + PathDelim + 'libmysql.dll';
+  frmMain.DriverLink.VendorHome:= VendorHome;
+  frmMain.DriverLink.VendorLib:= 'libmysql.dll';
 
   FormatSettings.ShortDateFormat:= 'dd/mm/yyyy';
   THREAD_IS_RUNNING:= False;

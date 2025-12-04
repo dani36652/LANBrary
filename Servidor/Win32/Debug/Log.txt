@@ -1,0 +1,3 @@
+04/12/2025 12:36 p. m. - Servidor encendido, IP= 10.10.0.199, Puerto: 49815
+04/12/2025 12:37 p. m. - Servidor encendido, IP= 10.10.0.199, Puerto: 49815
+04/12/2025 12:38 p. m. - Servidor encendido, IP= 10.10.0.199, Puerto: 49815

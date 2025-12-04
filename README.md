@@ -55,5 +55,7 @@ Este proyecto fue escrito en Delphi 12.
 - Ejecutar XAMPP como administrador e instalar MySQL y Apache como servicios de Windows
 - Los servicios deben iniciarse junto con el sistema
 - Conectar a la misma red local el equipo servidor y los clientes Android
+- HashLib4Pascal: https://github.com/Xor-el/HashLib4Pascal
+-PDFium binaries: https://github.com/bblanchon/pdfium-binaries
 
 
